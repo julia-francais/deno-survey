@@ -33,13 +33,14 @@ class AuthController {
           iss: _user.email,
           exp: Date.now() / 1000 + 60 * 60,
         },
-        "secret"
+        Deno.env.get("JWT_SECRET_KEY")!
       );
 
       ctx.response.body = {
         id: _user.id,
         name: _user.name,
         email: _user.email,
+        jwt,
       };
     }
   }

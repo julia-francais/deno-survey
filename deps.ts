@@ -6,3 +6,4 @@ export {
   compareSync,
 } from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 export { create } from "https://deno.land/x/djwt@v1.9/mod.ts";
+import "https://deno.land/x/dotenv@v1.0.1/load.ts";

@@ -12,9 +12,11 @@ export default class User {
     this.email = email;
     this.password = password;
   }
-  static findOne(params: object) {
-    console.log(params);
-    return usersCollection.findOne(params);
+  static async findOne(params: object) {
+    const user: any = await usersCollection.findOne(params);
+    user.id = user?._id.$oid;
+    delete user._id;
+    return new User(user);
   }
 
   async save() {
