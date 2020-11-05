@@ -17,7 +17,7 @@ Content-Type: application/json
     "password": "test"
 }
 ####
-@token =eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNjA0NTkwMDI5LjAxN30.12N0SfJn4nuVIJIAuNqNK3tnYqLd4Juur9w0YWaxkIaz-sVOafFC0EyCO05mMRqQloC_1x2u9Sbs-E9H98xZ_Q
+@token =eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNjA0NTk0OTQ2Ljg1Nn0.kMeA8_-tBmBXXVcA2tHx9qawJ0nAWC9P06rbhwpP9JlkgjOCyESpIP6WWUQ-YlK1uHI-gJrUJbj2cYM0GHXnRw
 
 
 ##############################
@@ -29,7 +29,7 @@ GET http://localhost:8000/api/survey
 Authorization: Bearer {{token}}
 
 ###Get single survey for user
-GET http://localhost:8000/api/survey/5fa40bdc00c83ee200c878a0
+GET http://localhost:8000/api/survey/5fa412600062b98d00c878a2
 Authorization: Bearer {{token}}
 
 ###Create survey 
@@ -38,20 +38,78 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "name":"oh lala c est genial",
+    "name":"oh lala dsdsc est genial",
     "description": "bla dddd"
 }
 
 ###Update survey 
-PUT http://localhost:8000/api/survey/5fa3be3700dd32330001c943
+PUT http://localhost:8000/api/survey/5fa412600062b98d00c878a2
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "name":"Survey 2",
-    "description": "test bla blabla"
+    "name":"Survey 3"
 }
 
 ###Delete survey
-DELETE http://localhost:8000/api/survey/5fa3be3700dd32330001c943
+DELETE http://localhost:8000/api/survey/5fa412600062b98d00c878a2
 Authorization: Bearer {{token}}
+
+
+
+#############################
+#######Questions
+#############################
+
+###Get Questions
+GET http://localhost:8000/api/survey/5fa412600062b98d00c878a2/questions
+Authorization: Bearer {{token}}
+
+###Get Single Question
+GET http://localhost:8000/api/question/5fa4283200cab21b00945df9
+Authorization: Bearer {{token}}
+
+
+###Create question 
+POST http://localhost:8000/api/question/5fa412600062b98d00c878a2
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "text": "How much you like Deno?",
+    "type": "choice",
+    "required": true,
+    "data": {
+        "multiple": false,
+        "answers": [
+            "I like it very much",
+            "I like it ",
+            "I dont like it",
+            "I hate it"
+        ]
+    }
+}
+###Update question 
+PUT http://localhost:8000/api/question/5fa4264d004cf05e00d6460c
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "text": "How much you like Sfvelte?",
+    "type": "choice",
+    "required": true,
+    "data": {
+        "multiple": false,
+        "answers": [
+            "I like it very much",
+            "I like it ",
+            "I dont like it",
+            "Pouah"
+        ]
+    }
+}
+
+###Delete survey
+DELETE http://localhost:8000/api/question/5fa4264d004cf05e00d6460c
+Authorization: Bearer {{token}}
+

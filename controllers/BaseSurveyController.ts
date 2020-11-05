@@ -8,19 +8,22 @@ export default class BaseSurveyController {
     id: string,
     ctx: RouterContext
   ): Promise<Survey | null> {
-    const survey = await Survey.findById(id);
+    const survey: Survey | null = await Survey.findById(id);
+    // If the survey does not exist return with 404
     if (!survey) {
       ctx.response.status = 404;
-      ctx.response.body = "Incorrect Id";
+      ctx.response.body = { message: "Invalid Survey ID" };
       return null;
     }
-
-    //@TODO survey belongs to authorised user ?
     const user = ctx.state.user as User;
+    // If survey does not belong to current user, return with 403
     if (survey.userId !== user.id) {
       ctx.response.status = 403;
-      ctx.response.body = { message: "You don't have permission to do this" };
+      ctx.response.body = {
+        message: "You don't have permission to view this survey",
+      };
+      return null;
     }
-    return null;
+    return survey;
   }
 }

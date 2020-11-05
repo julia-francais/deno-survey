@@ -20,7 +20,6 @@ class AuthController {
         ctx.response.body = { message: "User doesn't exist" };
         return;
       }
-      console.log("_user", _user);
       if (!compareSync(password, _user.password)) {
         ctx.response.status = 422;
         ctx.response.body = { message: "Incorrect password" };
@@ -51,7 +50,6 @@ class AuthController {
       const { name, email, password } = await result.value;
 
       let _user = await User.findOne({ email });
-      console.log("user", _user);
 
       if (_user) {
         ctx.response.status = 422;

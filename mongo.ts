@@ -7,9 +7,6 @@ client.connectWithUri(
 
 const db = client.database("deno_survey");
 
-console.log("db", db);
-
 export const usersCollection = db.collection("users");
-
 export const surveysCollection = db.collection("surveys");
-console.log("surveysCollection", surveysCollection.find());
+export const questionsCollection = db.collection("questions");

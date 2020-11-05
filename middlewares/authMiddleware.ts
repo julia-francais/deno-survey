@@ -18,7 +18,6 @@ export const authMiddleware = async (ctx: RouterContext, next: Function) => {
   if (!payload) {
     ctx.response.status = 401;
   } else {
-    console.log("payload", payload);
     const user = await User.findOne({ email: payload?.iss });
     ctx.state.user = user;
     await next();

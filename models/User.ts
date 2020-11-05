@@ -15,7 +15,6 @@ export default class User extends BaseModel {
     this.password = password;
   }
   static async findOne(params: object) {
-    console.log("params", params);
     const user: any = await usersCollection.findOne(params);
     if (!user) {
       return null;
@@ -26,7 +25,6 @@ export default class User extends BaseModel {
   async save() {
     delete this.id;
     const { $oid } = await usersCollection.insertOne(this);
-    console.log($oid);
     this.id = $oid;
     return this;
   }

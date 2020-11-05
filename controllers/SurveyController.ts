@@ -32,6 +32,7 @@ class SurveyController extends BaseSurveyController {
       ctx.response.body = survey;
     }
   }
+
   async update(ctx: RouterContext) {
     const id: string = ctx.params.id!;
 
@@ -45,6 +46,7 @@ class SurveyController extends BaseSurveyController {
       }
     }
   }
+
   async delete(ctx: RouterContext) {
     const id: string = ctx.params.id!;
 

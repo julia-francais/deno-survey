@@ -13,12 +13,19 @@ export default class Survey extends BaseModel {
     super();
   }
 
+  static async findAll(): Promise<Survey[]> {
+    const surveys = await surveysCollection.find();
+    return surveys.map((survey: any) => Survey.prepare(survey));
+  }
+
   static async findByUser(userId: string): Promise<Survey[]> {
     const surveys = await surveysCollection.find({ userId });
     return surveys.map((survey: any) => Survey.prepare(survey));
   }
 
   static async findById(id: string): Promise<Survey | null> {
+    console.log("id", await surveysCollection.findOne({ _id: { $oid: id } }));
+
     const survey = await surveysCollection.findOne({ _id: { $oid: id } });
     if (!survey) {
       return null;
@@ -36,7 +43,7 @@ export default class Survey extends BaseModel {
   async update({ name, description }: { name: string; description: string }) {
     await surveysCollection.updateOne(
       { _id: { $oid: this.id } },
-      { name, description }
+      { $set: { name, description } }
     );
     this.name = name;
     this.description = this.description;
@@ -44,12 +51,13 @@ export default class Survey extends BaseModel {
   }
 
   delete() {
-    console.log("delete", this.id);
     return surveysCollection.deleteOne({ _id: { $oid: this.id } });
   }
 
-  protected static prepare(data: any): Survey {
+  static prepare(data: any): Survey {
     data = BaseModel.prepare(data);
+    console.log("data", data);
+
     const survey = new Survey(data.userId, data.name, data.description);
     survey.id = data.id;
     return survey;
