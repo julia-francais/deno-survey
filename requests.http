@@ -16,3 +16,42 @@ Content-Type: application/json
     "email": "test@example.com",
     "password": "test"
 }
+####
+@token =eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNjA0NTkwMDI5LjAxN30.12N0SfJn4nuVIJIAuNqNK3tnYqLd4Juur9w0YWaxkIaz-sVOafFC0EyCO05mMRqQloC_1x2u9Sbs-E9H98xZ_Q
+
+
+##############################
+####SURVEYS
+#############################
+
+###Get all survey for user
+GET http://localhost:8000/api/survey
+Authorization: Bearer {{token}}
+
+###Get single survey for user
+GET http://localhost:8000/api/survey/5fa40bdc00c83ee200c878a0
+Authorization: Bearer {{token}}
+
+###Create survey 
+POST http://localhost:8000/api/survey
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name":"oh lala c est genial",
+    "description": "bla dddd"
+}
+
+###Update survey 
+PUT http://localhost:8000/api/survey/5fa3be3700dd32330001c943
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name":"Survey 2",
+    "description": "test bla blabla"
+}
+
+###Delete survey
+DELETE http://localhost:8000/api/survey/5fa3be3700dd32330001c943
+Authorization: Bearer {{token}}

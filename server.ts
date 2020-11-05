@@ -14,4 +14,6 @@ app.addEventListener("listen", ({ hostname, port, secure }) => {
   );
 });
 
+app.addEventListener("error", (e) => console.log("e", e.error));
+
 await app.listen({ port: 8000 });

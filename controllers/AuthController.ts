@@ -51,6 +51,8 @@ class AuthController {
       const { name, email, password } = await result.value;
 
       let _user = await User.findOne({ email });
+      console.log("user", _user);
+
       if (_user) {
         ctx.response.status = 422;
         ctx.response.body = { message: "Email is already used" };
