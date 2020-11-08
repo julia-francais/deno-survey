@@ -1,10 +1,15 @@
-import { Context } from "../deps.ts";
+import { Context, send } from "../deps.ts";
+import { fileExists } from "../helpers.ts";
 
 export const staticFileMiddleware = async (ctx: Context, next: Function) => {
-    console.log("static");
-
+    
     const path = `${Deno.cwd()}/assets${ctx.request.url.pathname}`;
-    console.log(path);
-    await next();
+    if (await fileExists(path)){
+        await send(ctx, ctx.request.url.pathname, {
+            root: `${Deno.cwd()}/assets`,
+        })
+    }else {
+        await next();
+    }
 
 }

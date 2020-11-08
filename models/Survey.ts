@@ -24,8 +24,6 @@ export default class Survey extends BaseModel {
   }
 
   static async findById(id: string): Promise<Survey | null> {
-    console.log("id", await surveysCollection.findOne({ _id: { $oid: id } }));
-
     const survey = await surveysCollection.findOne({ _id: { $oid: id } });
     if (!survey) {
       return null;
@@ -56,7 +54,6 @@ export default class Survey extends BaseModel {
 
   static prepare(data: any): Survey {
     data = BaseModel.prepare(data);
-    console.log("data", data);
 
     const survey = new Survey(data.userId, data.name, data.description);
     survey.id = data.id;

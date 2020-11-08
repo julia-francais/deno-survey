@@ -49,6 +49,14 @@ export default class Question extends BaseModel {
     return questionsCollection.deleteOne({ _id: { $oid: this.id } });
   }
 
+  isText(): boolean{
+    return this.type === QuestionType.TEXT;
+  }
+
+  isChoice():boolean {
+    return this.type === QuestionType.CHOICE;
+  }
+
   protected static prepare(data: any): Question {
     data = BaseModel.prepare(data);
     const question = new Question(

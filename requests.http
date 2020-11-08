@@ -17,7 +17,7 @@ Content-Type: application/json
     "password": "test"
 }
 ####
-@token =eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNjA0NTk0OTQ2Ljg1Nn0.kMeA8_-tBmBXXVcA2tHx9qawJ0nAWC9P06rbhwpP9JlkgjOCyESpIP6WWUQ-YlK1uHI-gJrUJbj2cYM0GHXnRw
+@token =eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZXhwIjoxNjA0ODQ4NDk4LjY5M30.8YcclOcCXLLzdLNwbR_Uiom9NtQahPWutz1C-83awp5KUhQaru1Orwr9apkMzQcabP4ocRmGXZtOGOveb0QwKQ
 
 
 ##############################
@@ -76,27 +76,27 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "text": "How much you like Deno?",
+    "text": "Is bla",
     "type": "choice",
-    "required": true,
+    "required": false,
     "data": {
-        "multiple": false,
+        "multiple": true,
         "answers": [
-            "I like it very much",
-            "I like it ",
-            "I dont like it",
-            "I hate it"
+            "A nazi",
+            "A baba-cool ",
+            "An ecolo-bobo",
+            "Both ?"
         ]
     }
 }
 ###Update question 
-PUT http://localhost:8000/api/question/5fa4264d004cf05e00d6460c
+PUT http://localhost:8000/api/question/5fa56dfa0084ab3e00961170
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "text": "How much you like Sfvelte?",
-    "type": "choice",
+    "text": "When was Js created ?",
+    "type": "text",
     "required": true,
     "data": {
         "multiple": false,
