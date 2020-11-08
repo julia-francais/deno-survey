@@ -10,3 +10,4 @@ const db = client.database("deno_survey");
 export const usersCollection = db.collection("users");
 export const surveysCollection = db.collection("surveys");
 export const questionsCollection = db.collection("questions");
+export const answersCollection = db.collection("answers");

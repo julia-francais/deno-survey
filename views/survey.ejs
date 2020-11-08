@@ -56,7 +56,7 @@
                         name="<%= question.id %>" 
                         value="<%= answer %>" 
                         id="<%= question.id %>_<%= index %>"
-                        <%= answers[question.id].includes(answer) ? 'checked' : ''%>>
+                        <%= answers[question.id] && answers[question.id].includes(answer) ? 'checked' : ''%>>
                         <label class="form-check-label" for="<%= question.id %>_<%= index %>">
                             <%= answer %>
                         </label>

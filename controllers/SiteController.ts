@@ -3,6 +3,7 @@ import Survey from "../models/Survey.ts";
 import {RouterContext, renderFileToString} from "../deps.ts"
 import { renderView } from "../helpers.ts";
 import Question from "../models/Question.ts";
+import {answersCollection} from '../mongo.ts';
 
 class SiteController {
 async surveys(ctx: RouterContext){
@@ -45,15 +46,21 @@ async submitSurvey(ctx: RouterContext) {
             }
         }
 
-        answers[question.id] = value;
+            answers[question.id] = value;
+        }
+        console.log('errors', errors);
+        if (Object.keys(errors).length > 0) {
+            ctx.response.body = await renderView('survey', {survey, questions, errors, answers});
+            return;
+        } 
+        const {$oid} = await answersCollection.insertOne({
+            surveyId: id,
+            date: new Date(),
+            userAgent: ctx.request.headers.get('User-Agent'),
+            answers
+        });
+        ctx.response.body = await renderView('surveyFinish', {answerId: $oid})
     }
-    console.log('errors', errors);
-    if (Object.keys(errors).length > 0) {
-        ctx.response.body = await renderView('survey', {survey, questions, errors, answers});
-        return;
-    } 
-    //Todo save
-}
 }
 
 const siteController = new SiteController();
